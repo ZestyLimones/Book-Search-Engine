@@ -30,9 +30,9 @@ const typeDefs = gql`
     authors: [Author]
   }
 
-  #   type Mutation {
-  #       addUser(username)
-  #   }
+  # type Mutation {
+  #     addUser(username: String!, email: String!, password: String!): Auth
+  # }
 `;
 
 module.exports = typeDefs;
