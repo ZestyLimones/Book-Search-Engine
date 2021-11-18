@@ -5,6 +5,7 @@ const db = require('./config/connection');
 // const routes = require('./routes');
 const { typeDefs, reslovers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -28,6 +29,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/book-search', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 // app.use(routes);
 
 // db.once('open', () => {
