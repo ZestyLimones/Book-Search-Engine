@@ -30,7 +30,7 @@ export const SAVE_BOOK = gql`
       _id
       username
       email
-      saveBooks {
+      savedBooks {
         bookId
         authors
         description
