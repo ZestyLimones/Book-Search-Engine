@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Jumbotron,
   Container,
@@ -17,7 +17,7 @@ import { REMOVE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
-  const [deleteBook, { error }] = useMutation(REMOVE_BOOK);
+  const [deleteBook] = useMutation(REMOVE_BOOK);
   const userData = data?.me || {};
   // use this to determine if `useEffect()` hook needs to run again
 
@@ -30,13 +30,13 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await deleteBook({
+      const { data } = await deleteBook({
         variables: {
           bookId,
         },
       });
       // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+      removeBookId(data);
     } catch (err) {
       console.error(err);
     }
