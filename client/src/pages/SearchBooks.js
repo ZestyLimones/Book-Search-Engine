@@ -77,7 +77,7 @@ const SearchBooks = () => {
     if (!token) {
       return false;
     }
-
+    console.log(Auth.getToken());
     try {
       const response = await saveBook({
         variables: {
